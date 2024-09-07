@@ -9,6 +9,15 @@ class Note(db.Model):
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
+class Plant(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    note = db.Column(db.Text, nullable=True)  # To store text notes
+    file_name = db.Column(db.String(255), nullable=False)  # To store the file name
+    file_data = db.Column(db.LargeBinary, nullable=False)  # To store the file data
+    date = db.Column(db.DateTime(timezone=True), default=func.now())
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
